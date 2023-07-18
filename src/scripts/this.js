@@ -102,15 +102,70 @@ Array.prototype.myReduce = function (fn , initialValue = undefined) {
 //syntactic sugar - lukier składniowy, <- to są klasy
 // Same klasy w sobie to są syntactic sugar
 
-class User1 {
-    constructor(name) {
-        this.name = name;
-        this.score = 0;
+// class User1 {
+//     constructor(name) {
+//         this.name = name;
+//         this.score = 0;
+//     }
+//
+//     updateScore(newScore) {
+//         this.score += newScore;
+//     }
+// }
+// // new wywyołuje constructor
+// const u5 = new User1('Zbigniew');
+
+
+// function magic() {
+//     console.log(this);
+// }
+//
+// const context = {
+//     a: 1, b: 2
+// }
+//
+// magic.call(context, "ala ma kota");
+// magic.apply(context, ["ala ma kota i ejc"]);
+// const magic2 = magic.bind(context);
+// magic2();
+
+
+// \/ pewniaczek na rozmowie kwalifikacyjnej
+const h1Ref = document.querySelector('#title');
+class Magic{
+
+    constructor() {
+        this.counter = 0;
     }
 
-    updateScore(newScore) {
-        this.score += newScore;
+    click() {
+        // this - object klasy magic
+
+        // this - object klasy magic
+        // h1Ref.addEventListener('click', (function () {
+        //     this.counter++;
+        //     console.log(this.counter);
+        // }).bind(this));
+
+        // this - object klasy magic
+
+        //janusz programowania takzrobi \/
+        // const that = this;
+        // h1Ref.addEventListener('click', (function () {
+        //     this.counter++;
+        //     console.log(that.counter);
+        // })
+        //janusz programowania takzrobi /\
+
+        const that = this;
+        h1Ref.addEventListener('click', () => {
+            this.counter++;
+            console.log(that.counter);
+        })
+        // arrow function nie ma this, dlatego program sobie weźmie thisa z góry
+        // tak można rozwiązać na rowmowie kwal
     }
 }
-// new wywyołuje constructor
-const u5 = new User1('Zbigniew');
+
+const m = new Magic();
+m.click();
